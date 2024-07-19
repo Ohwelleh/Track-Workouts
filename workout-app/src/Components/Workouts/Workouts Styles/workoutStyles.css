@@ -1,0 +1,5 @@
+.workoutsMain{
+    display: grid;
+    grid-template-columns: 15rem 25rem;
+    grid-gap: 1rem;
+}
