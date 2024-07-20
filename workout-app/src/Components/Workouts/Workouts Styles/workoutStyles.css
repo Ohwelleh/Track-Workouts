@@ -1,12 +1,24 @@
-.workoutsMain{
+.gridContainer{
+    height: 30rem;
+    width: 50rem;
+}
+
+.workoutGrid{
     display: grid;
-    grid-template-columns: 15rem 25rem;
-    grid-template-rows: 30rem;
+    grid-template-columns: 15rem 30rem;
     grid-gap: 1rem;
 }
 
 .workoutDate{
-    grid-row: auto;
+    display: grid;
+    grid-row: 1rem;
+    /* row-gap: 2px; */
     overflow: auto;
-    height: 30rem;
+    /* height: 30rem; */
+}
+
+button.dateBTN{
+    padding: 0%;
+    width: 100%;
+    /* height: 50%; */
 }
