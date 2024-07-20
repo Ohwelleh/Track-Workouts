@@ -1,6 +1,6 @@
 
 // Custom data types
-import { Exercise } from './Custom Data Types/CustomData'
+import { Exercise, Workout} from './Custom Data Types/CustomData'
 
 // Style imports
 import './Workouts Styles/bodyStyles.css'
@@ -19,14 +19,14 @@ function ExerciseInfo(exerciseProp: {exercise: Exercise}){
 
 
 
-export function ListItemBody(bodyProps: {date: string, exercises: Exercise[]}){
+export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
     return(
         <div className="workoutBody">
             <div>
-                <h4>{bodyProps.date}.</h4>
+                <h4>{bodyProps.workout.date}.</h4>
             </div>
-            {bodyProps.exercises.map((exercise) => {
-                return <ExerciseInfo exercise={exercise} />;
+            {bodyProps.workout.exercise.map((exercise, key) => {
+                return <ExerciseInfo key={key} exercise={exercise} />;
             })}
         </div>
 

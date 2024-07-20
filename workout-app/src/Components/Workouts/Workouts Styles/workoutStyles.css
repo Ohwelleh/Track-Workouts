@@ -1,5 +1,12 @@
 .workoutsMain{
     display: grid;
     grid-template-columns: 15rem 25rem;
+    grid-template-rows: 30rem;
     grid-gap: 1rem;
+}
+
+.workoutDate{
+    grid-row: auto;
+    overflow: auto;
+    height: 30rem;
 }

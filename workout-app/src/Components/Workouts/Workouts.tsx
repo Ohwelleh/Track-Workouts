@@ -6,20 +6,31 @@ import { ListItemBody } from './ListItemBody'
 import './Workouts Styles/workoutStyles.css'
 
 // Mock Data import
-import { WorkoutsMock } from '../../Mock Data/MockData'
+import { WorkoutsMock, TestMock } from '../../Mock Data/MockData'
+import { Fragment } from 'react/jsx-runtime'
 
 export function Workouts(){
     
     return(
         <div className='workoutsMain'>
-            {WorkoutsMock.map((workout) => {
-                return (
-                    <>
-                        <ListItem workID={workout.workoutID} date={workout.date}/>
-                        <ListItemBody date={workout.date} exercises={workout.exercise}/>
-                    </>
-                )
-            })}
+            <div key={'workoutsDateDiv'} className='workoutDate'>
+                {TestMock.map((workout) => {
+                    return (
+                        <Fragment key={workout.workoutID}>
+                            <ListItem key={workout.workoutID} workID={workout.workoutID} date={workout.workout.date}/>
+                        </Fragment>
+                    )
+                })}
+            </div>
+            <div key={'workoutsBodyDiv'} className='workoutBody'>
+                {WorkoutsMock.map((workout) => {
+                        return (
+                            <Fragment key={workout.workoutID}>
+                                <ListItemBody key={workout.workoutID} workoutID={workout.workoutID} workout={workout.workout}/>
+                            </Fragment>
+                        )
+                })}
+            </div>
         </div>
     )
 }

@@ -4,3 +4,8 @@ export interface Exercise {
     reps: number,
     sets: number,
 }
+
+export interface Workout {
+    date: string,
+    exercise: Exercise[]
+}
