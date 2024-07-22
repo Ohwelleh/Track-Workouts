@@ -1,0 +1,48 @@
+.workoutBody{
+    background-color: aqua;
+    border-radius: 1rem;
+    height: min-content;
+}
+
+.exerciseDiv{
+    display: grid;
+    grid-template-rows: auto;
+    margin-bottom: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+.exerciseGridTitle{
+    display: grid;
+    margin-left: 1.5rem;
+    grid-template-columns: 15rem 4rem 4rem 4rem;
+}
+
+.exerciseGridTitle div{
+    border-left: 3px solid;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+}
+
+.exerciseGridTitle .exerciseGridSets{
+    border-right: 3px solid;
+}
+
+.exerciseGridTitle h4{
+    margin: 0;
+}
+
+.exerciseInfoDiv{
+    display: grid;
+    grid-template-columns: 15rem 4rem 4rem 4rem;
+}
+
+.exerciseInfoDiv div{
+    border-left: 3px solid;
+    border-right: 3px solid;
+    border-top: 1.5px solid;
+    border-bottom: 3px solid;
+}
+
+.exerciseInfoDiv .exerciseName{
+    word-wrap: break-word;
+}

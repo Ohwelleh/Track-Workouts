@@ -1,3 +1,8 @@
+// Component imports.
+import { Workouts } from './Components/Workouts/Workouts'
+
+
+// Styling imports.
 import './App.css'
 
 function App() {
@@ -8,6 +13,7 @@ function App() {
         <div>
           <p>This Section will contain the Workout tracker.</p>
         </div>
+        <Workouts />
       </section>
       <section>
         <div className="card">

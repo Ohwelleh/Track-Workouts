@@ -1,0 +1,9 @@
+.workoutItem{
+    background-color: chartreuse;
+    height: 5rem;
+    border-radius: 1rem;
+}
+
+h2{
+    margin: 0;
+}
