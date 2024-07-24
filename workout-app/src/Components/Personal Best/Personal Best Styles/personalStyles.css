@@ -1,0 +1,14 @@
+.personalBestMainDiv{
+    background-color: blueviolet;
+    height: 20rem;
+}
+
+.personalBestRecords{
+    display: grid;
+
+}
+
+.personalBestEntries{
+    display: grid;
+    grid-template-columns: 15rem 15rem 15rem;
+}
