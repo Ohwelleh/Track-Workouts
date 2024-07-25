@@ -1,0 +1,40 @@
+.personalBestMainDiv{
+    background-color: blueviolet;
+    height: 20rem;
+}
+
+.personalBestRecords{
+    display: grid;
+    border-top: 3px solid;
+    border-left: 3px solid;
+    border-right: 3px solid;
+    margin: 0.5rem;
+}
+
+.personalBestEntries{
+    display: grid;
+    grid-template-columns: 20rem 15rem 7rem 15rem;
+}
+
+.personalBestEntries .personalDate{
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+}
+.personalBestEntries .personalExercise{
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+}
+.personalBestEntries .personalWeight{
+    border-right: 3px solid;
+    border-bottom: 3px solid;
+}
+
+.personalBestEntries .personalBTNS{
+    border-bottom: 3px solid;
+    padding-top: 0.5rem;
+}
+
+.addDiv{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}

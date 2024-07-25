@@ -1,5 +1,6 @@
 // Component imports.
 import { Workouts } from './Components/Workouts/Workouts'
+import { PersonalRecords } from './Components/Personal Best/PersonalRecords'
 
 
 // Styling imports.
@@ -21,9 +22,7 @@ function App() {
         </div>
       </section>
       <section>
-        <p className="read-the-docs">
-          This Section will contain the Personal Best records.
-        </p>
+        <PersonalRecords />
       </section>
     </>
   )
