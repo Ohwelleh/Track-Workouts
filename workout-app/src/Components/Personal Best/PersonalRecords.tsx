@@ -1,3 +1,6 @@
+// Component import
+import { PersonalButtons } from './PersonalButtons'
+
 
 // Styling import
 import './Personal Best Styles/personalStyles.css'
@@ -9,15 +12,19 @@ export function PersonalRecords(){
     return(
         <div className='personalBestMainDiv'>
             <div className='personalBestTitle'>
-                <h3>THIS IS WORKING</h3>
+                <PersonalButtons />
             </div>
             <div className='personalBestRecords'>
                 {PersonalMock.map((exercise) => {
                     return(
                         <div className="personalBestEntries">
-                            <div><p>{exercise.date}</p></div>
-                            <div><p>{exercise.exercise}</p></div>
-                            <div><p>{exercise.weight}</p></div>
+                            <div className='personalDate'><p>{exercise.date}</p></div>
+                            <div className='personalExercise'><p>{exercise.exercise}</p></div>
+                            <div className='personalWeight'><p>{exercise.weight}</p></div>
+                            <div className='personalBTNS'>
+                                <button className='editBTN'>Edit</button>
+                                <button>Delete</button>
+                            </div>
                         </div>
                     )
                 })}
