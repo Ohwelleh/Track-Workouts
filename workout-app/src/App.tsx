@@ -1,7 +1,7 @@
 // Component imports.
 import { Workouts } from './Components/Workouts/Workouts'
 import { PersonalRecords } from './Components/Personal Best/PersonalRecords'
-
+import { BodyWeight } from './Components/Body Weight/BodyWeight'
 
 // Styling imports.
 import './App.css'
@@ -10,18 +10,16 @@ function App() {
 
   return (
     <>
-      <section>
+      <section className='workoutSection'>
         <div>
           <p>This Section will contain the Workout tracker.</p>
         </div>
         <Workouts />
       </section>
-      <section>
-        <div className="card">
-          <p>This Section will contain track body weight.</p>
-        </div>
+      <section className='bodyWeightSection'>
+          <BodyWeight />
       </section>
-      <section>
+      <section className='personalBestSection'>
         <PersonalRecords />
       </section>
     </>

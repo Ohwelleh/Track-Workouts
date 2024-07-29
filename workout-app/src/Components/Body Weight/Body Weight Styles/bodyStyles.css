@@ -1,0 +1,13 @@
+.bodyMainDiv{
+    display: grid;
+    grid-template-columns: 15rem auto;
+    grid-gap: 1rem;
+    height: 30rem;
+}
+
+.workoutEntry{
+    display: grid;
+    overflow: auto;
+    grid-auto-rows: min-content;
+    height: 100%;
+}
