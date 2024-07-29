@@ -1,6 +1,7 @@
 .personalBestMainDiv{
     background-color: blueviolet;
     height: 20rem;
+    z-index: 1;
 }
 
 .personalBestRecords{
