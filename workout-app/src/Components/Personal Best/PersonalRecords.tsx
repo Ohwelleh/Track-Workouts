@@ -1,8 +1,7 @@
-// Hook import
-import { useState } from 'react'
 
 // Component import
 import { PersonalButtons } from './PersonalButtons'
+import { PersonalRow } from './PersonalRow'
 
 // Forms import
 import { PersonalDelete } from './Personal Form/PersonalDelete'
@@ -14,8 +13,8 @@ import './Personal Best Styles/personalStyles.css'
 // Mock data for test
 import { PersonalMock, PersonalRecord } from '../../Mock Data/MockData'
 
+
 export function PersonalRecords(){
-    const [editShow, setEditShow] = useState<boolean>(false)
 
     return(
         <div className='personalBestMainDiv'>
@@ -25,16 +24,7 @@ export function PersonalRecords(){
             <div className='personalBestRecords'>
                 {PersonalMock.map((exercise, id) => {
                     return(
-                        <div className="personalBestEntries">
-                            <div className='personalDate'><p>{exercise.date}</p></div>
-                            <div className='personalExercise'><p>{exercise.exercise}</p></div>
-                            <div className='personalWeight'><p>{exercise.weight}</p></div>
-                            <div className='personalBTNS'>
-                                <button key={id} className='editBTN' onClick={() => setEditShow(!editShow)}>Edit</button>
-                                <button onClick={PersonalDelete} >Delete</button>
-                            </div>
-                            {editShow && <PersonalEdit personalBest={exercise}/>}
-                        </div>
+                        <PersonalRow id={id} date={exercise.date} weight={exercise.weight} exercise={exercise.exercise} />
                     )
                 })}
             </div>
