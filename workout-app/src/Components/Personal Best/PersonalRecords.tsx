@@ -1,18 +1,14 @@
+// React Hooks
+import { useEffect, useState } from 'react'
 
 // Component import
-import { PersonalButtons } from './PersonalButtons'
 import { PersonalRow } from './PersonalRow'
-
-// Forms import
-import { PersonalDelete } from './Personal Form/PersonalDelete'
-import { PersonalEdit } from './Personal Form/PersonalEdit'
 
 // Styling import
 import './Personal Best Styles/personalStyles.css'
 
 // Mock data for test
 import { PersonalMock, PersonalRecord } from '../../Mock Data/MockData'
-import { MouseEventHandler, useEffect, useState } from 'react'
 
 
 export function PersonalRecords(){
@@ -45,12 +41,14 @@ export function PersonalRecords(){
                 {/* <PersonalButtons /> */}
                 <button onClick={handleAdd}>Add</button>
             </div>
-            <div key={'PRBODY'} className='personalBestRecords'>
-                {testData.map((exercise, id) => {
-                    return(
-                        <PersonalRow key={id} id={id} date={exercise.date} weight={exercise.weight} exercise={exercise.exercise} deleteHandler={handleDelete} />
-                    )
-                })}
+            <div className='personalEntryContainer'>
+                <div key='PRBODY' className='personalBestRecords'>
+                    {testData.map((exercise, id) => {
+                        return(
+                            <PersonalRow key={id} id={id} date={exercise.date} weight={exercise.weight} exercise={exercise.exercise} deleteHandler={handleDelete} />
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
