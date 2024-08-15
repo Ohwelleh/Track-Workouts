@@ -1,14 +1,22 @@
 .personalBestMainDiv{
     background-color: blueviolet;
-    height: 20rem;
+    height: 40rem;
+    z-index: 1;
+}
+
+.personalEntryContainer{
+    height: 90%;
+    overflow: auto;
 }
 
 .personalBestRecords{
     display: grid;
+    overflow: auto;
     border-top: 3px solid;
     border-left: 3px solid;
     border-right: 3px solid;
     margin: 0.5rem;
+    margin-top: 1rem;
 }
 
 .personalBestEntries{
