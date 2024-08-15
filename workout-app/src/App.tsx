@@ -11,9 +11,6 @@ function App() {
   return (
     <>
       <section className='workoutSection'>
-        <div>
-          <p>This Section will contain the Workout tracker.</p>
-        </div>
         <Workouts />
       </section>
       <section className='bodyWeightSection'>

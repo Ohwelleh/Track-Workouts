@@ -1,20 +1,19 @@
 .workoutBody{
-    background-color: aqua;
+    background-color: hsl(180, 28%, 46%);
     border-radius: 1rem;
-    height: min-content;
+    height: auto;
 }
 
 .exerciseDiv{
     display: grid;
+    margin-left: 3rem;
     grid-template-rows: auto;
-    margin-bottom: 0.5rem;
-    margin-left: 1.5rem;
 }
 
 .exerciseGridTitle{
     display: grid;
-    margin-left: 1.5rem;
-    grid-template-columns: 15rem 4rem 4rem 4rem;
+    margin-left: 3rem;
+    grid-template-columns: 19rem 6rem 6rem 6rem;
 }
 
 .exerciseGridTitle div{
@@ -33,7 +32,7 @@
 
 .exerciseInfoDiv{
     display: grid;
-    grid-template-columns: 15rem 4rem 4rem 4rem;
+    grid-template-columns: 19rem 6rem 6rem 6rem;
 }
 
 .exerciseInfoDiv div{

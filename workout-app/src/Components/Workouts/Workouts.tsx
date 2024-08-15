@@ -1,5 +1,5 @@
 // React hooks
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // Component imports.
 import { ListItem } from './ListItem'
@@ -9,10 +9,13 @@ import { ListItemBody } from './ListItemBody'
 import './Workouts Styles/workoutStyles.css'
 
 // Mock Data import
-import { WorkoutsMock, TestMock, WorkoutMock } from '../../Mock Data/MockData'
+import { WorkoutsMock, WorkoutMock, TestMock } from '../../Mock Data/MockData'
 import { Fragment } from 'react/jsx-runtime'
 
 export function Workouts(){
+    
+    // Initial data for workout body when the page initially loads
+    // TODO: implement a way to load the first actual workout instead.
     const initalStateVal: WorkoutMock = {
         workoutID: 0,
         workout: {
@@ -22,13 +25,46 @@ export function Workouts(){
             ]
         },
     }
+
+    // UseState for populating the workout body div.
     const [workoutInfo, setWorkoutInfo] = useState<WorkoutMock>(initalStateVal)
+
+    // Mock useState for testing the add button function.
+    const TestingData = WorkoutsMock
+    const [testWork, setTestWork] = useState<WorkoutMock[]>(TestingData)
+    const [workoutIDRandom, setWorkoutIDRandom] = useState<number>(234)
+
+    // Update listener.
+    useEffect(() => {console.log(testWork, '- Has Changed'), [testWork]})
     
+    // Add workout
+    function handleAdd(){
+        var uniqueID = (workoutIDRandom * 23)
+        setWorkoutIDRandom(workoutIDRandom + 1)
+        var newWorkout: WorkoutMock = {
+            workoutID: uniqueID,
+            workout: {
+                date: "Jan 1, 2024", 
+                exercise: [
+                    {name: "Bench", weight: uniqueID, reps: 10, sets: 4},
+                    {name: "Incline Bench", weight: 200, reps: 10, sets: 4},
+                    {name: "Flys", weight: 25, reps: 10, sets: 4},
+                ]
+            }
+        }
+
+        setTestWork([...testWork, newWorkout])
+    }
+
+
     return(
         <div className='gridContainer'>
             <div className='workoutGrid'>
                 <div key={'workoutsDateDiv'} className='workoutDate'>
-                    {WorkoutsMock.map((workout) => {
+                    <div>
+                        <button className='dateAddBTN' onClick={handleAdd}><h2 className='addBTNTxT'>Add</h2></button>
+                    </div>
+                    {testWork.map((workout) => {
                         return (
                             <Fragment key={workout.workoutID}>
                                 <button className="dateBTN" onClick={e => setWorkoutInfo(workout)}>
@@ -40,13 +76,6 @@ export function Workouts(){
                 </div>
                 <div key={'workoutsBodyDiv'} className='workoutBody'>
                     <ListItemBody key={workoutInfo.workoutID} workoutID={workoutInfo.workoutID} workout={workoutInfo.workout} />
-                    {/* {WorkoutsMock.map((workout) => {
-                            return (
-                                <Fragment key={workout.workoutID}>
-                                    <ListItemBody key={workout.workoutID} workoutID={workout.workoutID} workout={workout.workout}/>
-                                </Fragment>
-                            )
-                    })} */}
                 </div>
             </div>
         </div>
