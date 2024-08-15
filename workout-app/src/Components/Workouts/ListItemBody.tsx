@@ -1,3 +1,6 @@
+// React Hooks
+import { useEffect, useState } from 'react';
+
 
 // Custom data types
 import { Exercise, Workout} from './Custom Data Types/CustomData'
@@ -18,10 +21,29 @@ function ExerciseInfo(exerciseProp: {exercise: Exercise}){
 
 
 export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
+
+    const [testData, setTestData] = useState<Exercise[]>(bodyProps.workout.exercise)
+
+    // Update Listener
+    useEffect(() => {console.log(testData, '- Has Changed!'), [testData]})
+
+    // Add row
+    function handleAdd(){
+        var newRow: Exercise = {
+            name: '',
+            weight: 0,
+            reps: 0,
+            sets: 0,
+        }
+
+        setTestData([...testData, newRow])
+    }
+
     return(
         <div className="workoutBody">
             <div>
                 <h4>{bodyProps.workout.date}.</h4>
+                <button onClick={handleAdd}><h2>Add Exercise</h2></button>
             </div>
             <div className='exerciseGridTitle'>
                 <div className='exerciseGridName'><h4>Exercise Name</h4></div>
@@ -29,10 +51,12 @@ export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
                 <div className='exerciseGridReps'><h4>Reps</h4></div>
                 <div className='exerciseGridSets'><h4>Sets</h4></div>
             </div>
-            <div className='exerciseDiv'>
-                {bodyProps.workout.exercise.map((exercise, key) => {
-                    return <ExerciseInfo key={key} exercise={exercise} />;
-                })}
+            <div className='exerciseContainer'>
+                <div className='exerciseDiv'>
+                    {testData.map((exercise, key) => {
+                        return <ExerciseInfo key={key} exercise={exercise} />;
+                    })}
+                </div>
             </div>
         </div>
 

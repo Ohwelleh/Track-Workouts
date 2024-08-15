@@ -4,14 +4,23 @@
     height: auto;
 }
 
+.exerciseContainer{
+    height: 20rem;
+    overflow: auto;
+    margin-bottom: 1rem;
+}
+
 .exerciseDiv{
+    overflow: auto;
     display: grid;
     margin-left: 3rem;
     grid-template-rows: auto;
 }
 
+
 .exerciseGridTitle{
     display: grid;
+    margin-top: 1rem;
     margin-left: 3rem;
     grid-template-columns: 19rem 6rem 6rem 6rem;
 }
