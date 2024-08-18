@@ -8,13 +8,13 @@ import { Exercise, Workout} from './Custom Data Types/CustomData'
 // Style imports
 import './Workouts Styles/bodyStyles.css'
 
-function ExerciseInfo(exerciseProp: {exercise: Exercise}){
+function ExerciseInfo(exerciseProp: {exercise: Exercise, edit: boolean}){
     return(
         <div className='exerciseInfoDiv'>
-            <div className='exerciseName'>{exerciseProp.exercise.name} </div>
-            <div className='exerciseWeight'>{exerciseProp.exercise.weight}</div>
-            <div className='exerciseReps'>{exerciseProp.exercise.reps}</div>
-            <div className='exerciseSets'>{exerciseProp.exercise.sets}</div>
+            <div className='exerciseName' contentEditable={exerciseProp.edit}>{exerciseProp.exercise.name} </div>
+            <div className='exerciseWeight' contentEditable={exerciseProp.edit}>{exerciseProp.exercise.weight}</div>
+            <div className='exerciseReps' contentEditable={exerciseProp.edit}>{exerciseProp.exercise.reps}</div>
+            <div className='exerciseSets' contentEditable={exerciseProp.edit}>{exerciseProp.exercise.sets}</div>
         </div>
     );}
 
@@ -23,6 +23,7 @@ function ExerciseInfo(exerciseProp: {exercise: Exercise}){
 export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
 
     const [testData, setTestData] = useState<Exercise[]>(bodyProps.workout.exercise)
+    const [editData, setEditData] = useState<boolean>(false)
 
     // Update Listener
     useEffect(() => {console.log(testData, '- Has Changed!'), [testData]})
@@ -42,8 +43,10 @@ export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
     return(
         <div className="workoutBody">
             <div>
-                <h4>{bodyProps.workout.date}.</h4>
-                <button onClick={handleAdd}><h2>Add Exercise</h2></button>
+                <div contentEditable={editData}><h4>{bodyProps.workout.date}</h4></div>
+                <button className='workoutAddBTN' onClick={handleAdd}><h2>Add Exercise</h2></button>
+                { !editData && <button className='workoutEditBTN' onClick={() => setEditData(true)}><h2>Edit</h2></button> }
+                { editData && <button className='workoutEditBTN' onClick={() => setEditData(false)}><h2>Save</h2></button> }
             </div>
             <div className='exerciseGridTitle'>
                 <div className='exerciseGridName'><h4>Exercise Name</h4></div>
@@ -54,7 +57,7 @@ export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
             <div className='exerciseContainer'>
                 <div className='exerciseDiv'>
                     {testData.map((exercise, key) => {
-                        return <ExerciseInfo key={key} exercise={exercise} />;
+                        return <ExerciseInfo key={key} exercise={exercise} edit={editData}/>;
                     })}
                 </div>
             </div>

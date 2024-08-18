@@ -39,6 +39,10 @@
     margin: 0;
 }
 
+.workoutAddBTN{
+    margin-right: 1rem;
+}
+
 .exerciseInfoDiv{
     display: grid;
     grid-template-columns: 19rem 6rem 6rem 6rem;
