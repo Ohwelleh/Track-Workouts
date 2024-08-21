@@ -12,6 +12,7 @@ export function BodyWeight(){
     return(
         <div className='bodyMainDiv'>
             <div className="workoutEntry">
+                <button className='weightAddBTN'><h2>Add</h2></button>
                 {WeightMock.map((entries, key) => {
                     return(
                         <WeightEntry key={key} date={entries.date} weight={entries.weight}/>
