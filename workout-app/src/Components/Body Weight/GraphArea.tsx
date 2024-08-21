@@ -6,13 +6,13 @@ import { ResponsiveLine } from '@nivo/line'
 
 
 // Mock Data for graph testing
-import { testGraph } from '../../Mock Data/MockData'
+import { testGraph, weightData, } from '../../Mock Data/MockData'
 
-export function GraphArea(){
+export function GraphArea(props: {graphData: weightData[]}){
     return(
         <div className='gridMainDiv'>
             <ResponsiveLine
-                    data={testGraph}
+                    data={props.graphData}
                     margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
                     xScale={{ type: 'point' }}
                     yScale={{
