@@ -11,3 +11,11 @@
     grid-auto-rows: min-content;
     height: 100%;
 }
+
+.weightAddBTN{
+    background-color: burlywood;
+    height: 5rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    color: black;
+}
