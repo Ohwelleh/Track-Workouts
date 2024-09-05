@@ -12,5 +12,7 @@ router.get("/:workoutID", WorkoutController.getWorkout)
 // Can use the same end point when using different HTTP methods
 router.post("/", WorkoutController.createWorkout)
 
+// Route for updating a specific workout
+router.patch("/:workoutID", WorkoutController.updateWorkout)
 
 export default router

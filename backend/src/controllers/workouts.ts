@@ -1,8 +1,22 @@
 import { RequestHandler } from "express"
 import WorkoutModel from "../models/workout"
-import { CreateWorkoutBody } from "./controllerInterfaces"
+import { WorkoutBody, UpdateWorkoutParams } from "./controllerInterfaces"
 import createHttpError from "http-errors"
 import mongoose from "mongoose"
+
+// Helper functions
+function ValidWorkoutId(id: string){
+    if(!mongoose.isValidObjectId(id)){
+        throw createHttpError(400, "Invalid workout ID")
+    }
+}
+
+function RequiredDatePassed(date: string | undefined){
+    if(!date){
+        throw createHttpError(400, "Workout must have a date")
+    }
+}
+
 
 export const getWorkouts: RequestHandler = async (req, res, next) => {
     try {
@@ -20,9 +34,7 @@ export const getWorkout: RequestHandler = async (req, res, next) =>{
     try {
 
         // Checking if the workoutID is the correct format
-        if(!mongoose.isValidObjectId(workoutID)){
-            throw createHttpError(400, "Invalid workout ID")
-        }
+       ValidWorkoutId(workoutID)
 
 
         const workout = await WorkoutModel.findById(workoutID).exec()
@@ -40,16 +52,14 @@ export const getWorkout: RequestHandler = async (req, res, next) =>{
 }
 
 
-export const createWorkout: RequestHandler<unknown, unknown, CreateWorkoutBody, unknown> = async (req, res, next) =>{
+export const createWorkout: RequestHandler<unknown, unknown, WorkoutBody, unknown> = async (req, res, next) =>{
     
     const date = req.body.date
     const exercises = req.body.exercises
 
     try {
         
-        if(!date){
-            throw createHttpError(400, "Workout must have a date")
-        }
+        RequiredDatePassed(date)
 
         const newWorkout = await WorkoutModel.create({
             date: date,
@@ -57,6 +67,36 @@ export const createWorkout: RequestHandler<unknown, unknown, CreateWorkoutBody, 
         })
 
         res.status(201).json(newWorkout)
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+export const updateWorkout: RequestHandler<UpdateWorkoutParams, unknown, WorkoutBody, unknown> = async (req, res, next) =>{
+
+    const workoutID = req.params.workoutID
+    const newDate = req.body.date
+    const newExercises = req.body.exercises
+
+    try {
+        
+        ValidWorkoutId(workoutID)
+        RequiredDatePassed(newDate)
+
+        const workout = await WorkoutModel.findById(workoutID).exec()
+        
+        if(!workout){
+            throw createHttpError(404, "Workout not found")
+        }
+
+        workout.date = newDate!
+        workout.exercises = newExercises!
+
+        const updatedWorkout = await workout.save()
+
+        res.status(200).json(updatedWorkout)
 
     } catch (error) {
         next(error)
