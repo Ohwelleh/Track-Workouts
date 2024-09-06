@@ -102,3 +102,24 @@ export const updateWorkout: RequestHandler<UpdateWorkoutParams, unknown, Workout
         next(error)
     }
 }
+
+export const deleteWorkout: RequestHandler = async(req, res, next)=>{
+
+    const workoutID = req.params.workoutID
+
+    try {
+        ValidWorkoutId(workoutID)
+        const workout = await WorkoutModel.findById(workoutID).exec()
+
+        if(!workout){
+            throw createHttpError(404, "Workout not found")
+        }
+
+        await workout.deleteOne({_id: workoutID})
+
+        res.sendStatus(204)
+        
+    } catch (error) {
+        next(error)
+    }
+}

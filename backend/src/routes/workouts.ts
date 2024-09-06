@@ -15,4 +15,6 @@ router.post("/", WorkoutController.createWorkout)
 // Route for updating a specific workout
 router.patch("/:workoutID", WorkoutController.updateWorkout)
 
+router.delete("/:workoutID", WorkoutController.deleteWorkout)
+
 export default router
