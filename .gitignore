@@ -1,2 +1,8 @@
 .DS_STORE
 Mock\ Data/
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+.env
