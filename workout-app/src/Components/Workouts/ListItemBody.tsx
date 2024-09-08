@@ -1,9 +1,8 @@
 // React Hooks
 import { useEffect, useState } from 'react';
 
-
 // Custom data types
-import { Exercise, Workout} from './Custom Data Types/CustomData'
+import { Exercise } from './Custom Data Types/CustomData'
 
 // Style imports
 import './Workouts Styles/bodyStyles.css'
@@ -20,9 +19,9 @@ function ExerciseInfo(exerciseProp: {exercise: Exercise, edit: boolean}){
 
 
 
-export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
+export function ListItemBody(bodyProps: { workoutID: string, date: string, exercises: [{ name: string, weight: number, reps: number, sets: number}]}){
 
-    const [testData, setTestData] = useState<Exercise[]>(bodyProps.workout.exercise)
+    const [testData, setTestData] = useState<[{ name: string, weight: number, reps: number, sets: number}]>(bodyProps.exercises)
     const [editData, setEditData] = useState<boolean>(false)
 
     // Update Listener
@@ -30,20 +29,20 @@ export function ListItemBody(bodyProps: { workoutID: number, workout: Workout}){
 
     // Add row
     function handleAdd(){
-        var newRow: Exercise = {
-            name: '',
-            weight: 0,
-            reps: 0,
-            sets: 0,
-        }
+        // var newRow: Exercise = {
+        //     name: '',
+        //     weight: 0,
+        //     reps: 0,
+        //     sets: 0,
+        // }
 
-        setTestData([...testData, newRow])
+        // setTestData([...testData, newRow])
     }
 
     return(
         <div className="workoutBody">
             <div>
-                <div contentEditable={editData}><h4>{bodyProps.workout.date}</h4></div>
+                <div contentEditable={editData}><h4>{bodyProps.date}</h4></div>
                 <button className='workoutAddBTN' onClick={handleAdd}><h2>Add Exercise</h2></button>
                 { !editData && <button className='workoutEditBTN' onClick={() => setEditData(true)}><h2>Edit</h2></button> }
                 { editData && <button className='workoutEditBTN' onClick={() => setEditData(false)}><h2>Save</h2></button> }
