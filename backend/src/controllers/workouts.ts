@@ -4,6 +4,7 @@ import { WorkoutBody, UpdateWorkoutParams } from "./controllerInterfaces"
 import createHttpError from "http-errors"
 import mongoose from "mongoose"
 
+
 // Helper functions
 function ValidWorkoutId(id: string){
     if(!mongoose.isValidObjectId(id)){
