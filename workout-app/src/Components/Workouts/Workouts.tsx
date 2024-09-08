@@ -8,34 +8,57 @@ import { ListItemBody } from './ListItemBody'
 // Style imports.
 import './Workouts Styles/workoutStyles.css'
 
+// Data Model imports.
+import { Workout } from '../../Data Models/WorkoutModel'
+
+
 // Mock Data import
 import { WorkoutsMock, WorkoutMock, TestMock } from '../../Mock Data/MockData'
 import { Fragment } from 'react/jsx-runtime'
 
 export function Workouts(){
+
+    const [workouts, setWorkouts] = useState<Workout[]>([])
+
+
     
+    //=========== MOCK DATA SECTION(DELETE ONCE BACKEND IS CONNECTED) =============
     // Initial data for workout body when the page initially loads
     // TODO: implement a way to load the first actual workout instead.
-    const initalStateVal: WorkoutMock = {
-        workoutID: 0,
-        workout: {
-            date: "Place holder", 
-            exercise: [
+    const initalStateVal: Workout = {
+        _id: "0",
+        date: "Place holder", 
+        exercises: [
                 {name: "Place holder", weight: -225, reps: -10, sets: -4},
             ]
-        },
     }
 
     // UseState for populating the workout body div.
-    const [workoutInfo, setWorkoutInfo] = useState<WorkoutMock>(initalStateVal)
+    const [workoutInfo, setWorkoutInfo] = useState<Workout>(initalStateVal)
 
     // Mock useState for testing the add button function.
     const TestingData = WorkoutsMock
     const [testWork, setTestWork] = useState<WorkoutMock[]>(TestingData)
     const [workoutIDRandom, setWorkoutIDRandom] = useState<number>(234)
 
+    //===========================================================================
+
+    // *******************UPDATE VARAIABLES IN THIS SECTION ONCE BACKEND IS CONNECTED**************
     // Update listener.
-    useEffect(() => {console.log(testWork, '- Has Changed'), [testWork]})
+    useEffect(() => {
+        async function loadWorkouts(){
+            try {
+                const response = await fetch("/api/workouts/", {method: "GET"})
+                console.log(response)
+                const dbWorkouts = await response.json()
+                setWorkouts(dbWorkouts)
+            } catch (error) {
+                console.error(error)
+                alert(error)
+            }
+        }
+        loadWorkouts()
+    }, [])
     
     // Add workout
     function handleAdd(){
@@ -64,18 +87,18 @@ export function Workouts(){
                     <div>
                         <button className='dateAddBTN' onClick={handleAdd}><h2 className='addBTNTxT'>Add</h2></button>
                     </div>
-                    {testWork.map((workout) => {
+                    {workouts.map((workout) => {
                         return (
-                            <Fragment key={workout.workoutID}>
+                            <Fragment key={workout._id}>
                                 <button className="dateBTN" onClick={e => setWorkoutInfo(workout)}>
-                                    <ListItem key={workout.workoutID} workID={workout.workoutID} date={workout.workout.date}/>
+                                    <ListItem key={workout._id} workID={workout._id} date={workout.date}/>
                                 </button>
                             </Fragment>
                         )
                     })}
                 </div>
                 <div key={'workoutsBodyDiv'} className='workoutBody'>
-                    <ListItemBody key={workoutInfo.workoutID} workoutID={workoutInfo.workoutID} workout={workoutInfo.workout} />
+                    <ListItemBody key={workoutInfo._id} workoutID={workoutInfo._id} date={workoutInfo.date} exercises={workoutInfo.exercises!} />
                 </div>
             </div>
         </div>
